@@ -40,13 +40,6 @@ module.exports = {
             return this.authors[author].image;
         },
 
-        getAuthorGooglePlus: function(author) {
-            if(!"glpus" in this.authors[author]) {
-                return "https://plus.google.com/";
-            }
-            return "https://plus.google.com/" + this.authors[author].gplus + "/";
-        },
-
         getAuthorTwitter: function(author) {
             return "https://twitter.com/" + this.authors[author].twitter;
         },
@@ -262,6 +255,14 @@ module.exports = {
                     $startsWith: "/swags"
                 }
             }, [{ order: 1 }]);
+        },
+
+        about: function() {
+            return this.getCollection("documents").findAllLive({
+                url: {
+                    $startsWith: "/about"
+                }
+            }, [{ order: -1 }]);
         }
     },
 
